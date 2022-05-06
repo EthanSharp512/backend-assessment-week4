@@ -1,3 +1,7 @@
+const compliments = require("./db.json");
+
+let globalId = 4;
+
 module.exports = {
 
     getCompliment: (req, res) => {
@@ -17,5 +21,20 @@ module.exports = {
         let randomFortune = fortunes[randomIndex];
       
         res.status(200).send(randomFortune);
-    }
+    },
+    
+    createCompliment: (req, res) => {
+        
+        let { compliment, type } = req.body;
+
+        let newComp = {
+            id: globalId,
+            compliment,
+            type
+        }
+
+        compliments.push(newComp);
+        res.status(200).send(compliments);
+        globalId++;
+    },
 }
