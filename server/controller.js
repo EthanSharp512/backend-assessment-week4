@@ -7,13 +7,24 @@ module.exports = {
     getCompliment: (req, res) => {
         let randomIndex = Math.floor(Math.random() * compliments.length);
         let randomCompliment = compliments[randomIndex];
-      
         res.status(200).send(randomCompliment);
     },
+
     getFortune: (req, res) => {
         let randomIndex = Math.floor(Math.random() * fortunes.length);
         let randomFortune = fortunes[randomIndex];
-      
         res.status(200).send(randomFortune);
     },
+
+    addFortune: (req, res) => {
+        const {newFortune} = req.body
+        fortunes.push(newFortune)
+        res.status(200).send("Fortune added!")
+    },
+
+    deleteFortune: (req, res) => {
+        const {id} = req.params
+        fortunes.splice(id, 1)
+        res.status(200).send("Fortune removed")
+    }
 }
