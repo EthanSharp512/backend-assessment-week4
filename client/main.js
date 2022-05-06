@@ -31,7 +31,14 @@ const addFortune = () => {
 };
 
 const deleteFortune = () => {
-    console.log(deleteInput.value)
+    axios.delete(`http://localhost:4000/api/fortune/${deleteInput.value}`)
+    .then(res => {
+        alert(res.data)
+        deleteInput.value = ""
+    })
+    .catch(err => {
+        alert("No fortune to delete at this index")
+    })
 }
 
 complimentBtn.addEventListener('click', getCompliment)

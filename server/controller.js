@@ -24,7 +24,25 @@ module.exports = {
 
     deleteFortune: (req, res) => {
         const {id} = req.params
-        fortunes.splice(id, 1)
-        res.status(200).send("Fortune removed")
+
+        if(fortunes[+id]) {
+            fortunes.splice(id, 1)
+
+            res.status(200).send("Fortune removed!")
+        } else {
+            res.status(400).send("Fortune not found!")
+        }
+    },
+
+    updateFortune: (req, res) => {
+        const {id} = req.params
+
+        if(fortunes[+id]) {
+            fortunes.splice(id, 1, )
+
+            res.status(200).send("Fortune updated!")
+        } else {
+            res.status(400).send("Fortune not found!")
+        }
     }
 }
