@@ -12,14 +12,14 @@ const getCompliment = () => {
         });
     };
     
-    const getFortune = () => {
+const getFortune = () => {
         
-        axios.get("http://localhost:4000/api/fortune/")
-        .then(res => {
-            const data = res.data;
-            alert(data);
-        });
-    };
+    axios.get("http://localhost:4000/api/fortune/")
+    .then(res => {
+        const data = res.data;
+        alert(data);
+    });
+};
     
 
 
@@ -39,6 +39,9 @@ const createCompliment = body => axios.post(baseURL, body).then(complimentsCallb
 // const deleteCompliment = id => axios.delete(`${baseURL}/${id}`).then(complimentsCallback).catch(errCallback)
 // const updateCompliment = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(complimentsCallback).catch(errCallback)
     
+
+
+
     
 function submitHandler(e) {
     e.preventDefault()
@@ -59,16 +62,30 @@ function submitHandler(e) {
 
 
 
+
+
+
 function createComplimentCard(yourCompliment) {
     const complimentCard = document.createElement('div')
     complimentCard.classList.add('compliment-card')
 
-    complimentCard.innerHTML = `<p class="compliment">${yourCompliment.compliment}</p>`
+    complimentCard.innerHTML = `<p class="compliment">${yourCompliment.compliment}</p>
+    <div class="btns-container">
+        <form>
+            Edit compliment: 
+            <input type="text" name="compEdit">
+            <button onclick="updateHouse(${compliment.id}, 'edit')">-</button>
+        </form>
+    </div>
+    <button onclick="deleteHouse(${compliment.id})">delete</button>`
 
     complimentsContainer.appendChild(complimentCard)
 }
 
     
+
+
+
 
 function displayCompliments(arr) {
     complimentsContainer.innerHTML = ``
@@ -76,6 +93,10 @@ function displayCompliments(arr) {
         createComplimentCard(arr[i])
     }
 }
+
+
+
+
 
 
 complimentBtn.addEventListener('click', getCompliment)
