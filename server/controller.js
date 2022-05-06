@@ -22,7 +22,10 @@ module.exports = {
       
         res.status(200).send(randomFortune);
     },
-    
+    getCompliments: (req, res) => {
+        res.status(200).send(compliments);
+    },
+
     createCompliment: (req, res) => {
         
         let { compliment, type } = req.body;

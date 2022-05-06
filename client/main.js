@@ -1,5 +1,7 @@
+const complimentsContainer = document.querySelector('#compliments-container')
 const complimentBtn = document.getElementById("complimentButton")
 const fortuneBtn = document.getElementById("fortuneButton")
+const form = document.querySelector('form')
 
 
 const getCompliment = () => {
@@ -21,13 +23,18 @@ const getCompliment = () => {
     
 
 
-baseURL = "/api/createCompliment"
+baseURL = "http://localhost:4000/api/compliments"
 
 
 const complimentsCallback = ({ data: compliments }) => displayCompliments(compliments)
 const errCallback = err => console.log(err)
 
-const getAllCompliments = () => axios.get(baseURL).then(complimentsCallback).catch(errCallback)
+const getCompliments = () => {
+    axios.get(baseURL)
+        .then(complimentsCallback)
+        .catch(errCallback)
+        };
+
 const createCompliment = body => axios.post(baseURL, body).then(complimentsCallback).catch(errCallback)
 // const deleteCompliment = id => axios.delete(`${baseURL}/${id}`).then(complimentsCallback).catch(errCallback)
 // const updateCompliment = (id, type) => axios.put(`${baseURL}/${id}`, {type}).then(complimentsCallback).catch(errCallback)
@@ -70,14 +77,14 @@ function displayCompliments(arr) {
     }
 }
 
-form.addEventListener('submit', submitHandler)
-
-getAllCompliments()
-
-
-
-
 
 complimentBtn.addEventListener('click', getCompliment)
 fortuneBtn.addEventListener('click', getFortune)
-postFortunesBtn.addEventListener('click', postFortunes)
+form.addEventListener('submit', submitHandler)
+
+getCompliments()
+
+
+
+
+
