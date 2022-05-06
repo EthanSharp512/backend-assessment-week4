@@ -1,4 +1,8 @@
 const complimentBtn = document.getElementById("complimentButton")
+const fortuneBtn = document.createElement("button")
+fortuneBtn.textContent = 'Get Fortune'
+document.body.appendChild(fortuneBtn)
+
 
 const getCompliment = () => {
     axios.get("http://localhost:4000/api/compliment/")
@@ -8,4 +12,14 @@ const getCompliment = () => {
     });
 };
 
+const getFortune = () => {
+
+    axios.get("http://localhost:4000/api/fortune/")
+        .then(res => {
+            const data = res.data;
+            alert(data);
+    });
+};
+
 complimentBtn.addEventListener('click', getCompliment)
+fortuneBtn.addEventListener('click', getFortune)
