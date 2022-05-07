@@ -48,10 +48,13 @@ const deleteFortune = () => {
 };
 
 const updateFortune = () => {
-    axios.put(`http://localhost:4000/api/fortune/${updateIndex.value}`)
+    const id = updateInput.value
+    const type = updateIndex.value
+    axios.put(`http://localhost:4000/api/fortune/${id}`, {type})
     .then(res => {
         alert(res.data)
-        updateIndex.value = `${updateInput}`
+        updateIndex.value = ""
+        updateInput.value = ""
     })
     .catch(err => {
         alert("No fortune to replace at this index")

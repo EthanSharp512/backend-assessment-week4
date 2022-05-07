@@ -20,6 +20,7 @@ module.exports = {
         const {newFortune} = req.body
         fortunes.push(newFortune)
         res.status(200).send("Fortune added!")
+        console.log(fortunes)
     },
 
     deleteFortune: (req, res) => {
@@ -29,6 +30,7 @@ module.exports = {
             fortunes.splice(id, 1)
 
             res.status(200).send("Fortune removed!")
+            console.log(fortunes)
         } else {
             res.status(400).send("Fortune not found!")
         }
@@ -36,11 +38,12 @@ module.exports = {
 
     updateFortune: (req, res) => {
         const {id} = req.params
-        const {type} = req.body;
+        const {newFortune} = req.body
 
         if(fortunes[+id]) {
-            fortunes.splice(id, 1, type)
-            res.status(200).send(fortunes);
+            fortunes.splice(id, 1, newFortune)
+            res.status(200).send("Fortune updated!");
+            console.log(fortunes)
         } else {
             res.status(400).send("Fortune not found!")
         }
