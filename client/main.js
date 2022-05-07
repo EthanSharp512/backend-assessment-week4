@@ -5,6 +5,12 @@ const newFortuneInput = document.getElementById("new-fortune-input")
 const deleteBtn = document.getElementById("delete-button")
 const deleteInput = document.getElementById("delete-input")
 
+const updateIndex = document.getElementById("update-input-index")
+const updateInput = document.getElementById("update-input")
+const updateBtn = document.getElementById("update-button")
+
+
+
 const getCompliment = () => {
     axios.get("http://localhost:4000/api/compliment/")
     .then(res => {
@@ -39,9 +45,27 @@ const deleteFortune = () => {
     .catch(err => {
         alert("No fortune to delete at this index")
     })
+};
+
+const updateFortune = () => {
+    axios.put(`http://localhost:4000/api/fortune/${updateIndex.value}`)
+    .then(res => {
+        alert(res.data)
+        updateIndex.value = `${updateInput}`
+    })
+    .catch(err => {
+        alert("No fortune to replace at this index")
+    })
 }
+
+
+
+
+
+
 
 complimentBtn.addEventListener('click', getCompliment)
 fortuneBtn.addEventListener('click', getFortune)
 newFortuneBtn.addEventListener('click', addFortune)
 deleteBtn.addEventListener('click', deleteFortune)
+updateBtn.addEventListener('click', updateFortune)

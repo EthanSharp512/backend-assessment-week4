@@ -36,11 +36,11 @@ module.exports = {
 
     updateFortune: (req, res) => {
         const {id} = req.params
+        const {type} = req.body;
 
         if(fortunes[+id]) {
-            fortunes.splice(id, 1, )
-
-            res.status(200).send("Fortune updated!")
+            fortunes.splice(id, 1, type)
+            res.status(200).send(fortunes);
         } else {
             res.status(400).send("Fortune not found!")
         }
