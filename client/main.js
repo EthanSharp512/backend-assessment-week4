@@ -48,8 +48,8 @@ const deleteFortune = () => {
 };
 
 const updateFortune = () => {
-    const id = updateInput.value
-    const type = updateIndex.value
+    const id = updateIndex.value
+    const type = updateInput.value
     axios.put(`http://localhost:4000/api/fortune/${id}`, {type})
     .then(res => {
         alert(res.data)

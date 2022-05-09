@@ -38,10 +38,10 @@ module.exports = {
 
     updateFortune: (req, res) => {
         const {id} = req.params
-        const {newFortune} = req.body
+        const {type} = req.body
 
         if(fortunes[+id]) {
-            fortunes.splice(id, 1, newFortune)
+            fortunes.splice(id, 1, type)
             res.status(200).send("Fortune updated!");
             console.log(fortunes)
         } else {
